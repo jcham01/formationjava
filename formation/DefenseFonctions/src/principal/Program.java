@@ -24,6 +24,8 @@ public class Program {
 		int i = 4;
 		int j = 6;
 		
+		//System.exit(0);
+		
 		System.out.println("i = " + i + " j = " + j );
 		echange(i, j);
 		System.out.println("i = " + i + " j = " + j );
@@ -32,6 +34,8 @@ public class Program {
 		System.out.println("mat = " + Arrays.toString(mat));
 		echange(mat);
 		System.out.println("mat = " + Arrays.toString(mat));			
+		
+		
 		
 	}
 	
