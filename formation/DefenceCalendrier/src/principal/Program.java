@@ -23,9 +23,25 @@ public class Program {
 	public static String corps(int annee, int mois) {
 		StringBuilder sb = new StringBuilder();
 		int nbjours = nbJoursMois(annee, mois);
-		boolean leapyear = estBissextile(annee);
-		sb.append("nbjours = " + nbjours + " bissextile = " + leapyear);
+		int debut = jourDebut(annee, mois);
+		sb.append("nbjours = " + nbjours + " debut = " + debut);
 		return sb.toString();
+	}
+	
+	
+	public static int jourDebut(int annee, int mois) {
+		int jours = 2; //on commence un mercredi
+		
+		// commencer une boucle le 1er janvier 1800
+		for(int an=1800; an < annee; an++) {
+			jours += (estBissextile(an)? 366 : 365);
+		}
+		// je suis sur le 1er janvier de l'année qui m'intéresse
+		for (int m = 1; m < mois; m++) {
+			jours+= nbJoursMois(annee, m);
+		}
+		// on est sur le 1er du mois qui nous intéresse
+		return jours % 7;
 	}
 	
 	
