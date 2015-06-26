@@ -24,7 +24,19 @@ public class Program {
 		StringBuilder sb = new StringBuilder();
 		int nbjours = nbJoursMois(annee, mois);
 		int debut = jourDebut(annee, mois);
-		sb.append("nbjours = " + nbjours + " debut = " + debut);
+		
+		for (int marge = 0; marge < debut; marge++) {
+			sb.append("    ");
+		}
+		for (int j = 1; j <= nbjours; j++)
+		{
+			if (j < 10)
+				sb.append(' ');
+			//sb.append((j >= 10 ? " " : "  ") + j + " ");
+			sb.append(" " + j + " ");
+			if ((j + debut) % 7 == 0)
+				sb.append('\n');
+		}
 		return sb.toString();
 	}
 	
