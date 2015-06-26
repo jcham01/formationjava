@@ -2,22 +2,50 @@ package metier;
 
 public class Livre {
 	
-	public String titre;
-	public String isbn;
-	public double prix;
-
+	private static int compteur = 0;
+	public static int getCompteur() {
+		return compteur;
+	}
+	
+	
+	private String titre;
+	private String isbn;
+	private double prix;
+	
+	public String getTitre() {
+		return titre;
+	}
+	public void setTitre(String titre) {
+		this.titre = titre;
+	}
+	public String getIsbn() {
+		return isbn;
+	}
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
+	}
+	public double getPrix() {
+		return prix;
+	}
+	public void setPrix(double prix) {
+		this.prix = (prix > 0.0)? prix : 0.0;
+	}
+	
+	
 	public Livre() {
-		System.out.println("construction livre...");
+		this("inconnu", "0000000000", 0.01);
+		/*System.out.println("construction livre...");
 		titre = "inconnu";
 		isbn = "00000000000";
-		prix = 0.01;
+		prix = 0.01;*/
 	}
 	
 	public Livre(String titre, String isbn, double prix) {
 		System.out.println("construction livre 2 ...");
-		this.titre = titre;
-		this.isbn = isbn;
-		this.prix = prix;
+		setTitre(titre);
+		setIsbn(isbn);
+		setPrix(prix);
+		compteur++;
 	}
 	
 	
