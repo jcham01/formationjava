@@ -74,7 +74,7 @@ public class Program {
 			System.out.println(i);
 		}
 		
-		
+		//Collections.so
 	}
 
 }
