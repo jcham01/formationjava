@@ -37,6 +37,28 @@ public abstract class Piece {
 		this.couleur = couleur;
 	}
 	
+	public String getDeplacements(int deplX, int deplY, int repetition) {
+		// cette fonction suit une deplacement par pas de deplX et deplY
+		StringBuilder buffer = new StringBuilder();
+		int x = getPositionX();
+		int y = getPositionY();
+		// nous effectuons ce déplacement répétition fois ou jusqu'a
+		// toucher le bord de l'échiquier
+		for (int i = 0; i < repetition; i++) {
+			x += deplX;
+			y += deplY;
+			if (x < 1 || x > 8 || y < 1 || y > 8)
+				break;
+			// String.valueOf convertie le char en String pour que la concanetation
+			// fonctionne
+			buffer.append(String.valueOf(colonnes.charAt(x -1)) + y);
+		}
+		// et nous renvoyon les cases parcourues
+		return buffer.toString();
+		
+	}
+	
+	
 	// charge au pieces "concretes" de définir leur déplacements
 	public abstract String getMouvements();
 	

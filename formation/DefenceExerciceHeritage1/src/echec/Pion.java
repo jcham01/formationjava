@@ -8,6 +8,15 @@ public class Pion extends Piece {
 
 	@Override
 	public String getMouvements() {
+		return getDeplacements(0, (getCouleur() == BLANCHE)? 1 : -1, 1);
+	}
+
+	
+	
+	/*
+	
+	@Override
+	public String getMouvements() {
 		int deplY = 0;
 		// je détermine la direction du mouvement en Y en fonction de la couleur
 		// les pions blanc monte vers les case du haut
@@ -30,5 +39,5 @@ public class Pion extends Piece {
 			return "";
 		}
 	}
-
+*/
 }
