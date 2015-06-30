@@ -15,11 +15,13 @@ public class IntervalIterator implements Iterator<Integer>
 	
 	@Override
 	public boolean hasNext() {
+		System.out.println("appel de hasNext sur position " + position);
 		return position <= inter.getFin();
 	}
 
 	@Override
 	public Integer next() {
+		System.out.println("appel de next avec pos=" + position);
 		return position++;
 	}
 

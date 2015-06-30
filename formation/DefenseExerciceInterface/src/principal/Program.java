@@ -27,8 +27,9 @@ public class Program {
 		System.out.println("----------------------");
 		transfert(comptes[0], comptes[1], 50.0);
 		
-		
+		System.out.println("---------------------- avant sort");
 		Arrays.sort(comptes);
+		System.out.println("---------------------- après sort");
 		for (ICompteBancaire ic : comptes) {
 			System.out.println(ic);
 		}

@@ -39,6 +39,7 @@ public class CompteSG implements ICompteBancaire
 	
 	@Override
 	public int compareTo(ICompteBancaire o) {
+		System.out.println("comparaison de " + this.noCompte + " avec autre compte");
 		if (this.getSolde() > o.getSolde())
 			return 1;
 		if (this.getSolde() < o.getSolde())
