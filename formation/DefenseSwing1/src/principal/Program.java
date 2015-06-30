@@ -29,11 +29,15 @@ public class Program {
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(null, "votre compte est bien débité!");
 			}
+			
 		});
 		
 		// rendre visible
 		fen1.setVisible(true);
 		
+		
+		MyWindow fen2 = new MyWindow();
+		fen2.setVisible(true);
 		
 		
 		
