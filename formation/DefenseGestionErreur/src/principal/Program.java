@@ -2,6 +2,8 @@ package principal;
 
 import java.util.Scanner;
 
+import mylib.AgeException;
+
 public class Program {
 
 	public static void main(String[] args) throws Exception
@@ -13,6 +15,10 @@ public class Program {
 			try {
 				age = saisieAge();
 				System.out.println("vous avez " + age + " ans");
+				break;
+			}
+			catch (AgeException ex) {
+				System.out.println("erreur sur l'age " + ex.getMessage());
 				break;
 			}
 			catch (Exception ex) {
@@ -27,7 +33,7 @@ public class Program {
 		System.out.println("fin programme");
 	}
 	
-	public static int saisieAge()
+	public static int saisieAge() throws AgeException
 	{
 		Scanner reader = new Scanner(System.in);
 		String saisie = "";
@@ -37,6 +43,11 @@ public class Program {
 				System.out.println("saisissez votre age:");
 				saisie = reader.nextLine();
 				age = Integer.parseInt(saisie);
+				if (age < 0 || age > 250)
+				{
+					AgeException ae = new AgeException(age);
+					throw ae;
+				}
 				return age;
 			}
 			catch (NumberFormatException ex) {
