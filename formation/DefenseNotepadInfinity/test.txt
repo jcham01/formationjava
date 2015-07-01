@@ -1,0 +1,108 @@
+package principal;
+// ahahahah
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.util.Scanner;
+
+import javax.swing.*;
+
+public class NotepadWindow extends JFrame implements ActionListener
+{
+	public static final String LOAD_COMMAND = "load";
+	public static final String SAVE_COMMAND = "save";
+	
+	private JButton btLoad, btSave;
+	private JTextField champFileName;
+	private JTextArea champDocument;
+	
+	public NotepadWindow() {
+		super("notepad infinty et au dela");
+		setSize(600, 500);
+		setLocationRelativeTo(null);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
+		setLayout(new BorderLayout());
+		
+		// je place un panel au nord de ma fenetre
+		JPanel panelHaut = new JPanel();
+		add(panelHaut, BorderLayout.NORTH);
+	
+		// le contenu de mon panel sera aligné horizontalement 
+		BoxLayout bl = new BoxLayout(panelHaut, BoxLayout.X_AXIS);
+		panelHaut.setLayout(bl);
+		champFileName = new JTextField(30);
+		panelHaut.add(champFileName);
+		
+		btLoad = new JButton("charger");
+		panelHaut.add(btLoad);
+		btLoad.setActionCommand(LOAD_COMMAND);
+		btLoad.addActionListener(this);
+		
+		btSave = new JButton("sauver");
+		panelHaut.add(btSave);
+		btSave.setActionCommand(SAVE_COMMAND);
+		btSave.addActionListener(this);
+		
+		champDocument = new JTextArea();
+		add(new JScrollPane(champDocument), BorderLayout.CENTER);
+		
+		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		switch (e.getActionCommand()) {
+			case LOAD_COMMAND:
+				loadFile();
+				break;
+			case SAVE_COMMAND:
+				saveFile();
+				break;
+		}
+	}
+	
+	private void loadFile() {
+		File f = new File(champFileName.getText());
+		if (f.exists() && f.isFile() && f.canRead()) {
+			try {
+				Scanner reader = new Scanner(f);
+				StringBuilder contenu = new StringBuilder();
+				while (reader.hasNext()) {
+					contenu.append(reader.nextLine() + "\n");
+				}
+				reader.close();
+				champDocument.setText(contenu.toString());
+			} catch (FileNotFoundException e) {
+				JOptionPane.showMessageDialog(null, "impossible de lire le fichier",
+							"erreur au chargement", JOptionPane.ERROR_MESSAGE);
+			}
+			
+		}
+		else {
+			JOptionPane.showMessageDialog(null, "impossible de lire le fichier",
+					"erreur au chargement", JOptionPane.ERROR_MESSAGE);
+		}
+		
+	}
+	
+	private void saveFile() {
+		File f = new File(champFileName.getText());
+		try {
+			PrintWriter writer = new PrintWriter(f);
+			writer.print(champDocument.getText());
+			// toujours fermer le flux
+			writer.close();
+			
+		} catch (FileNotFoundException e) {
+			JOptionPane.showMessageDialog(null, "impossible de sauver le fichier",
+					"erreur a la sauvegarde", JOptionPane.ERROR_MESSAGE);
+		}
+		
+		
+	}
+	
+}
