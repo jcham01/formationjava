@@ -4,8 +4,10 @@ import java.awt.*;
 import java.awt.event.*;
 
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
-public class MyWindow extends JFrame implements ActionListener
+public class MyWindow extends JFrame implements ActionListener, DocumentListener
 {
 	public static final String ADD_COMMAND = "add";
 	public static final String CLEAR_COMMAND = "clear";
@@ -60,6 +62,40 @@ public class MyWindow extends JFrame implements ActionListener
 		champDocument = new JTextArea();
 		add(new JScrollPane(champDocument), BorderLayout.CENTER);
 		
+		champTexte.getDocument().addDocumentListener(this);
+	/*	JTextField jt2 = new JTextField();
+		jt2.setDocument(champTexte.getDocument());
+		panelHaut.add(jt2);
+		*/
+		
+		// ajout d'un menu
+		JMenuBar barre = new JMenuBar();
+		JMenu menu1 = new JMenu("file");
+		barre.add(menu1);
+		
+		menu1.add("open");
+		//menu1.add("save");
+		JMenu sousmenu1 = new JMenu("save");
+		menu1.add(sousmenu1);
+		menu1.add("close");
+		
+		sousmenu1.add("save as texte");
+		sousmenu1.add("save as xml");
+		
+		JMenu menu2 =new JMenu("liste");
+		JMenuItem item1 = new JMenuItem("add");
+		menu2.add(item1);
+		item1.addActionListener(this);
+		item1.setActionCommand(ADD_COMMAND);
+		
+		JMenuItem item2 = new JMenuItem("clear");
+		menu2.add(item2);
+		item2.addActionListener(this);
+		item2.setActionCommand(CLEAR_COMMAND);
+		
+		barre.add(menu2);
+		
+		setJMenuBar(barre);
 		
 		
 	}
@@ -77,5 +113,25 @@ public class MyWindow extends JFrame implements ActionListener
 		}
 		
 	}
+
+
+	private void docChanged(DocumentEvent e) {
+		
+		if (champTexte.getText().length() < 3 || champTexte.getText().length() > 10)
+		{
+			bt1.setEnabled(false);
+		}
+		else
+		{
+			bt1.setEnabled(true);
+		}
+	}
+	
+	@Override
+	public void changedUpdate(DocumentEvent e) {docChanged(e);}
+	@Override
+	public void insertUpdate(DocumentEvent e) {docChanged(e);}
+	@Override
+	public void removeUpdate(DocumentEvent e) {docChanged(e);}
 
 }
