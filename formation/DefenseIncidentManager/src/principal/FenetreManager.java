@@ -35,6 +35,7 @@ public class FenetreManager extends JFrame implements ActionListener, ListSelect
 	private JList<Incident> listeIncidents;
 	private IncidentDAO incidentDAO;
 	
+	private FenetreEdit editWindow;
 	
 	public FenetreManager() {
 		super("mon manager");
@@ -91,22 +92,60 @@ public class FenetreManager extends JFrame implements ActionListener, ListSelect
 	
 		// initialisation connection a la base
 		incidentDAO = new IncidentDAO();
+		
+		// fenetre d'edition
+		editWindow = new FenetreEdit(this);
+		
+		refresh_liste();
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch(e.getActionCommand()) {
 			case CREATE_COMMAND:
+				creer_incident();
 				break;
 			case EDIT_COMMAND:
+				edit_incident();
 				break;
 			case DELETE_COMMAND:
+				delete_incident();
 				break;
 			case RELOAD_COMMAND:
 				refresh_liste();
 				break;
 		}
 		
+	}
+	
+	public void delete_incident() {
+		// il faut insérer dans la base, et ajouter dans la JList
+		incidentDAO.delete(listeIncidents.getSelectedValue());
+		refresh_liste();
+	}
+	
+	
+	
+	public void save_incident() {
+		// il faut insérer dans la base, et ajouter dans la JList
+		editWindow.setVisible(false);
+		editWindow.refresh_object();
+		incidentDAO.save(editWindow.getIncident());
+		refresh_liste();
+	}
+	
+	private void creer_incident() {
+		Incident i = new Incident(0, "rien....", new Date(), 1, "defaut");
+		editWindow.setIncident(i);
+		editWindow.refresh_window();
+		editWindow.setVisible(true);
+	}
+	
+	private void edit_incident() {
+		Incident i = listeIncidents.getSelectedValue();
+		editWindow.setIncident(i);
+		editWindow.refresh_window();
+		editWindow.setVisible(true);
 	}
 	
 	private void refresh_liste() {
@@ -123,7 +162,7 @@ public class FenetreManager extends JFrame implements ActionListener, ListSelect
 	// pour la liste
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
-		JOptionPane.showMessageDialog(null, "selection de " + listeIncidents.getSelectedValue());
+		//JOptionPane.showMessageDialog(null, "selection de " + listeIncidents.getSelectedValue());
 		
 	}
 	

@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class Incident {
 	
-	private static SimpleDateFormat format 
+	public static final SimpleDateFormat format 
 		= new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 	
 	private int id;
