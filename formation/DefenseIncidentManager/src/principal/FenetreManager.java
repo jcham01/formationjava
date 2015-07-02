@@ -3,6 +3,7 @@ package principal;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.BoxLayout;
@@ -17,6 +18,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import metier.Incident;
+import metier.IncidentDAO;
 
 public class FenetreManager extends JFrame implements ActionListener, ListSelectionListener
 {
@@ -31,6 +33,8 @@ public class FenetreManager extends JFrame implements ActionListener, ListSelect
 	private DefaultListModel<Incident> dataIncidents;
 	// le composant graphique liste
 	private JList<Incident> listeIncidents;
+	private IncidentDAO incidentDAO;
+	
 	
 	public FenetreManager() {
 		super("mon manager");
@@ -69,7 +73,7 @@ public class FenetreManager extends JFrame implements ActionListener, ListSelect
 		dataIncidents = new DefaultListModel<Incident>();
 		listeIncidents = new JList<Incident>(dataIncidents);
 	
-		
+		/*
 		dataIncidents.addElement(new Incident(1,
 										"panne signalisation",
 										new Date(),
@@ -81,15 +85,38 @@ public class FenetreManager extends JFrame implements ActionListener, ListSelect
 				new Date(),
 				4,
 				"sante"));
-
+*/
 		add(new JScrollPane(listeIncidents), BorderLayout.CENTER);
 		listeIncidents.addListSelectionListener(this);
 	
+		// initialisation connection a la base
+		incidentDAO = new IncidentDAO();
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		switch(e.getActionCommand()) {
+			case CREATE_COMMAND:
+				break;
+			case EDIT_COMMAND:
+				break;
+			case DELETE_COMMAND:
+				break;
+			case RELOAD_COMMAND:
+				refresh_liste();
+				break;
+		}
+		
+	}
+	
+	private void refresh_liste() {
+		ArrayList<Incident> incidents = incidentDAO.findAll();
+		// je vide la liste
+		dataIncidents.clear();
+		// je copie les incidents de la base dans la Jlist
+		for (Incident i : incidents)
+			dataIncidents.addElement(i);
+		
 		
 	}
 
