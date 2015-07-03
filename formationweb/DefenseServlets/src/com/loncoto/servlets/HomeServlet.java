@@ -32,6 +32,7 @@ public class HomeServlet extends HttpServlet {
 		super.init(config);
 		System.out.println("init de home servlet");
 		titreDefaut = getServletConfig().getInitParameter("titreDefaut");
+		
 	}
 
 
