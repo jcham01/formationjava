@@ -1,0 +1,14 @@
+td {
+	font-weight: bolder;
+}
+
+td.bord {
+	background-color: blue;
+}
+td.centre {
+	background-color: pink;
+}
+
+h2#titrePage {
+	text-decoration: underline;
+}
