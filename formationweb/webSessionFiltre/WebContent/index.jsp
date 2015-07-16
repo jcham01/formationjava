@@ -4,9 +4,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<%@ include file="inclusion.jspf" %>
 <title>test session</title>
 </head>
 <body>
+
+<jsp:include page="Header.jsp" >
+	<jsp:param value="bonjour" name="message"/>
+</jsp:include>
 <h2>compteur de la session <%= session.getAttribute("compteur") %></h2>
 <h2>identifiant de la session <%= session.getId() %></h2>
 <form action="IndexServlet" method="post">
