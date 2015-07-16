@@ -60,6 +60,12 @@ public class ClientServlet extends HttpServlet {
 				getServletContext().getRequestDispatcher("/edit.jsp")
 					.forward(request, response);				
 				break;
+			case "creer":
+				Client c3 = new Client(0, "noname", "noemail@toto.com", 100.0);
+				request.setAttribute("client", c3);
+				getServletContext().getRequestDispatcher("/edit.jsp")
+					.forward(request, response);				
+				break;
 			case "sauver":
 				Client c2 = new Client(Integer.parseInt(request.getParameter("id"))
 									 ,request.getParameter("nom")
@@ -69,6 +75,11 @@ public class ClientServlet extends HttpServlet {
 				clientDAO.save(c2);
 				// renvoie une redirection http
 				response.sendRedirect("ClientServlet");
+				break;
+			case "supprimer":
+				int cid = Integer.parseInt(request.getParameter("id"));
+				clientDAO.delete(cid);
+				response.sendRedirect("ClientServlet");			
 				break;
 		}
 	}
