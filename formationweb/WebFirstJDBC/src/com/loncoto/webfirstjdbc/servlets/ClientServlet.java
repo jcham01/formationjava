@@ -60,6 +60,16 @@ public class ClientServlet extends HttpServlet {
 				getServletContext().getRequestDispatcher("/edit.jsp")
 					.forward(request, response);				
 				break;
+			case "sauver":
+				Client c2 = new Client(Integer.parseInt(request.getParameter("id"))
+									 ,request.getParameter("nom")
+									 ,request.getParameter("email")
+									 ,Double.parseDouble(request.getParameter("solde"))
+									 );
+				clientDAO.save(c2);
+				// renvoie une redirection http
+				response.sendRedirect("ClientServlet");
+				break;
 		}
 	}
 

@@ -8,10 +8,14 @@ import com.loncoto.webfirstjdbc.beans.*;
 public class ClientDAO {
 	public static final String FIND_ALL_SQL = "select * from `client`";
 	public static final String FIND_BY_ID_SQL = "select * from `client` where `id`=?";
+	public static final String UPDATE_ONE_SQL = "update `client` set `nom`=?, `email`=?, `solde`=? where `id`=?";
+	public static final String INSERT_ONE_SQL = "insert into `client` (`nom`, `email`, `solde`) values (?,?,?)";
+	
 	
 	private PreparedStatement findAllStatement;
 	private PreparedStatement findByIDStatement;
-	
+	private PreparedStatement updateOneStatement;
+	private PreparedStatement insertOneStatement;
 	
 	private Connection base;
 	
@@ -20,12 +24,37 @@ public class ClientDAO {
 		try {
 			findAllStatement = base.prepareStatement(FIND_ALL_SQL);
 			findByIDStatement = base.prepareStatement(FIND_BY_ID_SQL);
+			updateOneStatement = base.prepareStatement(UPDATE_ONE_SQL);
+			insertOneStatement = base.prepareStatement(INSERT_ONE_SQL);
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+	
+	
+	public int save(Client c) {
+		if (c.getId() > 0) {
+			// c'est un update
+			try {
+				updateOneStatement.clearParameters();
+				updateOneStatement.setString(1, c.getNom());
+				updateOneStatement.setString(2, c.getEmail());
+				updateOneStatement.setDouble(3, c.getSolde());
+				updateOneStatement.setInt(4, c.getId());
+				return updateOneStatement.executeUpdate();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		else {
+			// c'est une insert
+		}
+		return 0;
+	}
+	
 	
 	
 	public Client findByID(int id) {
@@ -35,7 +64,7 @@ public class ClientDAO {
 			// je remplace le premier point d'interogation par l'id que j'ai en parametre
 			findByIDStatement.setInt(1, id);
 			
-			ResultSet rs = findAllStatement.executeQuery();
+			ResultSet rs = findByIDStatement.executeQuery();
 			if (rs.next()) {
 				c = new Client(rs.getInt("id"),
 						rs.getString("nom"),
