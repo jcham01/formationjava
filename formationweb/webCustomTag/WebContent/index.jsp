@@ -10,5 +10,7 @@
 </head>
 <body>
 <my:hello />
+<hr />
+<my:selectGenerator keyProperty="id" items="articles" valueProperty="libelle"/>
 </body>
 </html>

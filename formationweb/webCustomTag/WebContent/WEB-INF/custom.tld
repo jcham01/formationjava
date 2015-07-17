@@ -8,5 +8,22 @@
     <tag-class>com.loncoto.webCustomTag.utils.HelloTag</tag-class>
     <body-content>empty</body-content>
   </tag>
+  <tag>
+  	<name>selectGenerator</name>
+    <tag-class>com.loncoto.webCustomTag.utils.SelectGenerator</tag-class>
+    <body-content>empty</body-content>
+    <attribute>
+      	<name>items</name>
+      	<required>true</required>
+  	</attribute>
+    <attribute>
+      	<name>keyProperty</name>
+      	<required>true</required>
+  	</attribute>
+    <attribute>
+      	<name>valueProperty</name>
+      	<required>true</required>
+  	</attribute>
+  </tag>
   
 </taglib>
