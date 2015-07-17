@@ -39,7 +39,7 @@ public class DatabaseManager implements ServletContextListener {
      * @see ServletContextListener#contextInitialized(ServletContextEvent)
      */
     public void contextInitialized(ServletContextEvent arg0)  { 
-    	 System.out.println("demarrage de databaseManager");
+    	System.out.println("demarrage de databaseManager");
          String driverclass = arg0.getServletContext().getInitParameter("driverclass");
          String databaseurl = arg0.getServletContext().getInitParameter("databaseurl");
          String login = arg0.getServletContext().getInitParameter("login");
