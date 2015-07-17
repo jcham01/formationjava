@@ -22,7 +22,13 @@
 <td><c:out value="${a.libelle}" /></td>
 <td><c:out value="${a.prix}" /></td>
 <td><c:out value="${a.poids}" /></td>
-<td>actions...</td>
+<td>
+<form action="ArticleServlet" method="post">
+		<input type="hidden" name="id" value="<c:out value='${a.id}' />" />
+		<input type="hidden" name="action" value='editer' />
+		<input type="submit" value="edition" />	
+	</form>
+</td>
 </tr>
 </c:forEach>
 </table>
