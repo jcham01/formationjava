@@ -9,12 +9,18 @@
 </head>
 <body>
 <h2>liste des articles</h2>
+
 <table border="1">
-<tr><th>libelle</th><th>prix</th><th>actions</th></tr>
+<tr>
+<th><a href="ArticleServlet">libelle(non trie)</a></th>
+<th><a href="ArticleServlet/prix">prix</a></th>
+<th><a href="ArticleServlet/poids">poids</a></th>
+<th>actions</th></tr>
 <c:forEach items="${requestScope.articles}" var="a" >
 <tr>
 <td><c:out value="${a.libelle}" /></td>
 <td><c:out value="${a.prix}" /></td>
+<td><c:out value="${a.poids}" /></td>
 <td>actions...</td>
 </tr>
 </c:forEach>

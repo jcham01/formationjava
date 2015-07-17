@@ -37,5 +37,6 @@
   <servlet-mapping>
     <servlet-name>ArticleServlet</servlet-name>
     <url-pattern>/ArticleServlet</url-pattern>
+    <url-pattern>/ArticleServlet/*</url-pattern>
   </servlet-mapping>
 </web-app>

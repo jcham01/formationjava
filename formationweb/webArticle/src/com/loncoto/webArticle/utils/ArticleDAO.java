@@ -12,13 +12,15 @@ public class ArticleDAO {
 	public static final int ORDERED_BY_POIDS = 2;
 	
 	public static final String FIND_ALL_SQL = "select * from `article`";
-	public static final String FIND_ALL_ORDERED_SQL = "select * from `article` ORDER BY ?";
+	public static final String FIND_ALL_ORDERED_PRIX_SQL = "select * from `article` ORDER BY `prix`";
+	public static final String FIND_ALL_ORDERED_POIDS_SQL = "select * from `article` ORDER BY `poids`";
 	
 	
 	private Connection base;
 	
 	private PreparedStatement findAllSatement;
-	private PreparedStatement findAllOrderedSatement;
+	private PreparedStatement findAllOrderedPrixSatement;
+	private PreparedStatement findAllOrderedPoidsSatement;
 	
 	
 	public ArticleDAO(Connection base) {
@@ -26,7 +28,8 @@ public class ArticleDAO {
 		
 		try {
 			findAllSatement = base.prepareStatement(FIND_ALL_SQL);
-			findAllOrderedSatement = base.prepareStatement(FIND_ALL_ORDERED_SQL);
+			findAllOrderedPrixSatement = base.prepareStatement(FIND_ALL_ORDERED_PRIX_SQL);
+			findAllOrderedPoidsSatement = base.prepareStatement(FIND_ALL_ORDERED_POIDS_SQL);
 					
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -58,14 +61,12 @@ public class ArticleDAO {
 					stat = findAllSatement;
 					break;
 				case ORDERED_BY_POIDS:
-					findAllOrderedSatement.clearParameters();
-					findAllOrderedSatement.setString(1, "poids");
-					stat = findAllOrderedSatement;
+					findAllOrderedPoidsSatement.clearParameters();
+					stat = findAllOrderedPoidsSatement;
 					break;
 				case ORDERED_BY_PRIX:
-					findAllOrderedSatement.clearParameters();
-					findAllOrderedSatement.setString(1, "prix");
-					stat = findAllOrderedSatement;
+					findAllOrderedPrixSatement.clearParameters();
+					stat = findAllOrderedPrixSatement;
 					break;
 			}
 			ResultSet rs = stat.executeQuery();

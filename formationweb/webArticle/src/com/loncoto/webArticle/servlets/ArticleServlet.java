@@ -39,7 +39,20 @@ public class ArticleServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("articles", articleDAO.findAll());
+		System.out.println(" uri = " + request.getRequestURI());
+		String uri = request.getRequestURI();
+		String[] champs = uri.split("/");
+		String order = champs[champs.length - 1];
+		int choix = ArticleDAO.ORDERED_BY_DEFAULT;
+		switch (order) {
+			case "prix":
+				choix = articleDAO.ORDERED_BY_PRIX;
+				break;
+			case "poids":
+				choix = articleDAO.ORDERED_BY_POIDS;
+				break;
+		}
+		request.setAttribute("articles", articleDAO.findAll(choix));
 		getServletContext().getRequestDispatcher("/liste.jsp")
 							.forward(request, response);
 	}
