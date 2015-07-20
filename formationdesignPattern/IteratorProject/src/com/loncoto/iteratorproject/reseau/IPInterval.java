@@ -31,9 +31,9 @@ public class IPInterval {
 	}
 	
 	public boolean isInInterval(int a, int b, int c, int d) {
-		long current = (a << 24) + (b << 16) + (c << 8) + d;
-		long start =  (ipStart[0] << 24) + (ipStart[1] << 16) + (ipStart[2] << 8) + ipStart[3];
-		long end =  (ipEnd[0] << 24) + (ipEnd[1] << 16) + (ipEnd[2] << 8) + ipEnd[3];
+		long current = ((long)a << 24) + (b << 16) + (c << 8) + d;
+		long start =  ((long)ipStart[0] << 24) + (ipStart[1] << 16) + (ipStart[2] << 8) + ipStart[3];
+		long end =  ((long)ipEnd[0] << 24) + (ipEnd[1] << 16) + (ipEnd[2] << 8) + ipEnd[3];
 		
 		if (current < start || current > end)
 			return false;
