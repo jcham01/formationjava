@@ -24,7 +24,7 @@ public class IPIntervalIterator implements Iterator<Integer[]> {
 	@Override
 	public Integer[] next() {
 		// je recupere l'adresse ip sous forme d'un chiffre
-		long cur = ((long)current[0] << 24) + (current[1] << 16) + (current[1] << 8) + current[3];
+		long cur = ((long)current[0] << 24) + (current[1] << 16) + (current[2] << 8) + current[3];
 		// j'incremente le chiffre
 		cur++;
 		// je sauvegarde l'ip courante pour la renvoyer
