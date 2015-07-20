@@ -3,9 +3,10 @@ package com.loncoto.factoryoroject.data;
 import java.io.File;
 import java.util.Map;
 
-public abstract class DataImporter {
+public abstract class DataImporter implements IDataImporter
+{
 	
-	public abstract Map<String, String> importData();
+	//public abstract Map<String, String> importData();
 	
 	// la fonction "fabrique", celle qui choisira
 	// la classe concrete du dataImporter
