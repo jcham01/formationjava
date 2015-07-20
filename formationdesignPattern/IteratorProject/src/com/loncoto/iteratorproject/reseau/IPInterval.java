@@ -1,6 +1,9 @@
 package com.loncoto.iteratorproject.reseau;
 
-public class IPInterval {
+import java.util.Iterator;
+
+public class IPInterval implements Iterable<Integer[]>
+{
 
 	private int[] ipStart;
 	private int[] ipEnd;
@@ -39,15 +42,12 @@ public class IPInterval {
 			return false;
 		return true;
 		
-/*		if (a < ipStart[0] || a > ipEnd[0])
-			return false;
-		if (b < ipStart[1] || b > ipEnd[1])
-			return false;
-		if (c < ipStart[2] || c > ipEnd[2])
-			return false;
-		if (d < ipStart[3] || d > ipEnd[3])
-			return false;
-		return true;*/
+	}
+	// fabrique d'iterateur sur ipInterval
+	@Override
+	public Iterator<Integer[]> iterator() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }
