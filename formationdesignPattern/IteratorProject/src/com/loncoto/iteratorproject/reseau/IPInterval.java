@@ -46,8 +46,8 @@ public class IPInterval implements Iterable<Integer[]>
 	// fabrique d'iterateur sur ipInterval
 	@Override
 	public Iterator<Integer[]> iterator() {
-		// TODO Auto-generated method stub
-		return null;
+		// je renvoie un iterateur sur moi-même
+		return new IPIntervalIterator(this);
 	}
 	
 }

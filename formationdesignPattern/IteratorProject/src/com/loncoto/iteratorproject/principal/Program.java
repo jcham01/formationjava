@@ -1,5 +1,7 @@
 package com.loncoto.iteratorproject.principal;
 
+import java.util.Arrays;
+
 import com.loncoto.iteratorproject.reseau.IPInterval;
 
 public class Program {
@@ -12,6 +14,10 @@ public class Program {
 		System.out.println("192.100.100.60 dedans? " + ipi1.isInInterval(192, 100, 100, 60));
 		System.out.println("192.100.105.10 dedans? " + ipi1.isInInterval(192, 100, 105, 10));
 		System.out.println("192.100.110.30 dedans? " + ipi1.isInInterval(192, 100, 110, 30));
+		
+		for (Integer[] ip : ipi1) {
+			System.out.println(Arrays.toString(ip));
+		}
 		
 	}
 
