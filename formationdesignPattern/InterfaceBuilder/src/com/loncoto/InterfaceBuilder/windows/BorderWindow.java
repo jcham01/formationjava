@@ -1,7 +1,7 @@
 package com.loncoto.InterfaceBuilder.windows;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 
-public class BorderWindow extends JFrame {
+public class BorderWindow extends BaseWindow {
 
 }

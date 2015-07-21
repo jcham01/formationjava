@@ -11,7 +11,7 @@ public class Program {
 		WindowFactory wf  = new WindowFactory("fenetre1.xml");
 		
 		JFrame f1 = wf.BuildWindow("window1");
-		f1.setVisible(true);
+		//f1.setVisible(true);
 	}
 
 }
