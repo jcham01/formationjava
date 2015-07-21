@@ -13,6 +13,11 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import com.loncoto.InterfaceBuilder.windows.BaseWindow;
+import com.loncoto.InterfaceBuilder.windows.BorderWindow;
+import com.loncoto.InterfaceBuilder.windows.FlowWindow;
+import com.loncoto.InterfaceBuilder.windows.GridWindow;
+
 public class WindowFactory 
 {
 	private HashMap<String, Element> windows_desc;
@@ -50,6 +55,22 @@ public class WindowFactory
 	public JFrame BuildWindow(String windowName) {
 		System.out.println("building window " + windowName +
 				" of type " + windows_desc.get(windowName).getAttribute("type"));
-		return null;
+		Element desc = windows_desc.get(windowName);
+		BaseWindow win = null;
+		switch(desc.getAttribute("type")) {
+			case "BorderWindow":
+				win = new BorderWindow(windowName);
+				break;
+			case "FlowWindow":
+				win = new FlowWindow(windowName);
+				break;
+			case "GridWindow":
+				win = new GridWindow(windowName,
+									Integer.parseInt(desc.getAttribute("cols")),
+									Integer.parseInt(desc.getAttribute("rows")));
+				break;
+		}
+		win.createComponents(desc);
+		return win;
 	}
 }

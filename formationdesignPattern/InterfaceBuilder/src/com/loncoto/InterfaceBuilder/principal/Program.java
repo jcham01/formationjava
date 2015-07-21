@@ -10,8 +10,8 @@ public class Program {
 		
 		WindowFactory wf  = new WindowFactory("fenetre1.xml");
 		
-		JFrame f1 = wf.BuildWindow("window1");
-		//f1.setVisible(true);
+		JFrame f1 = wf.BuildWindow("window3");
+		f1.setVisible(true);
 	}
 
 }
