@@ -11,6 +11,8 @@ public class Compteurpartage2 {
 	}
 	
 	public int augmenteCompteur() {
+		// l'atomic integer garantie la cohérence de ses opérations
+		// il n'y a plus besoin de section critique même en cas d'accès multiples
 		return this.compteur.incrementAndGet();
 	}
 	
