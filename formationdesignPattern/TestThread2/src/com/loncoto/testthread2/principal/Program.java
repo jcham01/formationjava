@@ -1,16 +1,18 @@
 package com.loncoto.testthread2.principal;
 
 import com.loncoto.testthread2.util.CompteurPartage;
+import com.loncoto.testthread2.util.Compteurpartage2;
 import com.loncoto.testthread2.util.Worker1;
+import com.loncoto.testthread2.util.Worker2;
 
 public class Program {
 
 	public static void main(String[] args) {
 		
-		CompteurPartage compteur = new CompteurPartage();
-		Thread t1 = new Thread(new Worker1(compteur, "w1"));
-		Thread t2 = new Thread(new Worker1(compteur, "w2"));
-		Thread t3 = new Thread(new Worker1(compteur, "w3"));
+		Compteurpartage2 compteur = new Compteurpartage2();
+		Thread t1 = new Thread(new Worker2(compteur, "w1"));
+		Thread t2 = new Thread(new Worker2(compteur, "w2"));
+		Thread t3 = new Thread(new Worker2(compteur, "w3"));
 		
 		System.out.println("demarrage");
 		System.out.println(compteur);
