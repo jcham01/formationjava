@@ -1,5 +1,7 @@
 package com.loncoto.testthread2.principal;
 
+import java.util.Vector;
+
 import com.loncoto.testthread2.util.CompteurPartage;
 import com.loncoto.testthread2.util.Compteurpartage2;
 import com.loncoto.testthread2.util.Worker1;
@@ -13,6 +15,7 @@ public class Program {
 		Thread t1 = new Thread(new Worker2(compteur, "w1"));
 		Thread t2 = new Thread(new Worker2(compteur, "w2"));
 		Thread t3 = new Thread(new Worker2(compteur, "w3"));
+		
 		
 		System.out.println("demarrage");
 		System.out.println(compteur);
