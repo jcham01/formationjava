@@ -1,5 +1,7 @@
 package com.loncoto.testthread1.principal;
 
+import java.util.Scanner;
+
 import com.loncoto.testthread1.util.Worker1;
 
 public class Program {
@@ -21,11 +23,17 @@ public class Program {
 		t2.start();
 		System.out.println("démarrage thread 3");
 		t3.start();
+		Scanner reader = new Scanner(System.in);
 		
 		
 		try {
 			while (true) {
-				System.out.println("attente de thread 1");
+				System.out.println("attente de thread 1, forcer arret tous les thread?");
+				if (reader.hasNext()){
+					w1.setMustStop(true);
+					w2.setMustStop(true);
+					w3.setMustStop(true);
+				}
 				t1.join(1000);
 				if (!t1.isAlive())
 					break;
