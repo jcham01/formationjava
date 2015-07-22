@@ -1,12 +1,23 @@
 package com.loncoto.testthread3.principal;
 
 import java.util.concurrent.*;
+import java.util.concurrent.locks.ReentrantLock;
 
 import com.loncoto.testthread3.util.Worker1;
 
 public class Program {
 
 	public static void main(String[] args) {
+		
+		System.out.println("debut...");
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		System.out.println("demarrage...");
+		
 		ExecutorService srv = Executors.newFixedThreadPool(4);
 		
 		srv.execute(new Worker1("worker a"));
@@ -15,6 +26,16 @@ public class Program {
 		srv.execute(new Worker1("worker d"));
 		srv.execute(new Worker1("worker e"));
 		srv.execute(new Worker1("worker f"));
+		
+	/*	ReentrantLock rl = new ReentrantLock();
+		rl.*/
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
 		
 		// termine toutes les taches planifiées
 		// mais n'accepte plus de nouvelles taches
