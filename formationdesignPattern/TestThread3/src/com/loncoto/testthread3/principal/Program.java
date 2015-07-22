@@ -22,12 +22,17 @@ public class Program {
 		srv.shutdown();
 		
 		try {
-			// j'attend au maximum 20 secondes que le thread pool
-			// se termine
-			System.out.println("waiting for shutdown complete");
-			srv.awaitTermination(20, TimeUnit.SECONDS);
+			while (true) {
+				// j'attend au maximum 2 secondes que le thread pool
+				// se termine
+				System.out.println("waiting for shutdown complete");
+				srv.awaitTermination(2, TimeUnit.SECONDS);
+				if (srv.isTerminated())
+					break;
+				System.out.println("not yet finished....");
+			}
 		} catch (InterruptedException e) {e.printStackTrace();}
-		
+		System.out.println("fini!");
 		
 
 		
